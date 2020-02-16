@@ -44,7 +44,7 @@ python cli.py -c /PATH_TO_CART_JSON -p /PATH_TO_BASE_PRICE_JSON
 ```
 Example:
 ```
-python3 cli.py -c test_files/test_carts/cart-9363.json -p test_files/test_base_prices/base-prices.json
+python3 cli.py -c test_files/carts/cart-9363.json -p test_files/base_prices/base-prices.json
 ```
 ### Testing
 Run:
