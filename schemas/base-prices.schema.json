@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "product-type": {
+        "type": "string"
+      },
+      "options": {
+        "type": "object",
+        "description": "Key-value pairs of strings. The value is an array and the base-price applies to all the strings in that array.",
+        "properties": {}
+      },
+      "base-price": {
+        "type": "integer",
+        "description": "The base price for this product-type and option combination in cents."
+      }
+    },
+    "required": [
+      "product-type",
+      "options",
+      "base-price"
+    ]
+  }
+}
