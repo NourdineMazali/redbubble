@@ -46,3 +46,13 @@ Example:
 ```
 python3 cli.py -c test_files/test_carts/cart-9363.json -p test_files/test_base_prices/base-prices.json
 ```
+### Testing
+Run:
+```
+ python tests.py
+```
+## Design Implementation
+OOP for creating Cart, CartItem, PriceFinder and Calculator Classes inside redbubble.py 
+since all can be stand alone - for future extendability with other Objects.<br>
+
+
