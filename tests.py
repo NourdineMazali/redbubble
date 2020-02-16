@@ -85,5 +85,45 @@ class TestPriceCalculator(unittest.TestCase):
             print()
         print("-----------------------------------------------------------------------")
 
+    def test_cart_item_count(self):
+        for i in range(0, len(list_of_cart_jsons)):
+            print("Testing Cart JSON File: " + list_of_cart_jsons[i] + \
+            " with Expected Cart Item Amount of " + \
+            str(list_of_cart_item_count[i]))
+
+            #Testing Cart Class
+            cart_json = Helper.load_schema(list_of_cart_jsons[i], 'cart.schema.json')
+            rb_cart = Cart(cart_json)
+            actual_cart_item_amount = len(rb_cart.get_product_items())
+            print("Actual Cart Item Amount: " + str(actual_cart_item_amount), \
+            end = "")
+
+            self.assertEqual(actual_cart_item_amount, \
+            list_of_cart_item_count[i])
+            print(" - PASS")
+
+    def test_mark_up_prices(self):
+        print()
+        mark_up_prices_index = 0
+        for i in range(0, len(list_of_cart_jsons)):
+            print("Testing Cart JSON File: " + list_of_cart_jsons[i])
+            #Testing Cart and PriceFinder Class
+            cart_json = Helper.load_schema(list_of_cart_jsons[i], 'cart.schema.json')
+            rb_cart = Cart(cart_json)
+            price_json = Helper.load_schema(list_of_price_jsons[0], 'base-prices.schema.json')
+            price_finder = PriceFinder(price_json)
+
+            calculator = Calculator(rb_cart, price_finder)
+
+            list_of_cart_items = rb_cart.get_product_items()
+
+            for product in list_of_cart_items:
+                self.assertEqual(price_finder.get_price_point(product),\
+            list_of_mark_up_prices[mark_up_prices_index])
+                mark_up_prices_index = mark_up_prices_index + 1
+                print(" - PASS")
+                print()
+            print(list_of_cart_jsons[i] + " = PASS")
+
 if __name__ == '__main__':
     unittest.main()

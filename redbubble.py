@@ -236,5 +236,54 @@ class Calculator:
     """
     Calculator Class for CartItems in the RedBubble
     Shopping Cart.
+
+    Attributes:
+        price (Integer): Represents the Price in the RedBubble
+        Shopping Cart in Cents.
+        *(Can Be Easily Extendable for Other Features as Well)*
     """
-    pass
+
+    def __init__(self, cart: Cart, price_finder: PriceFinder):
+        """
+        Constructor for the PriceCalculator Class.
+
+        Args:
+            self (none): None.
+            cart (Cart): Cart Object Representing a List of CartItems.
+            price_finder (PriceFinder): PriceFinder Object Containing the
+            Base Prices .
+        Returns:
+            (void): No return value. Just sets member variables.
+        """
+        self._cart = cart
+        self._price_finder = price_finder
+        self.price = self.calculate(cart)
+
+    def calculate(self, cart):
+        """
+        Calculates the Total Price of the Cart in Cents.
+
+        Args:
+            self (none): None.
+            cart (Cart): Cart Object Representing a List of CartItems.
+        Returns:
+            (Integer): The Total Price of the Cart in Cents.
+        """
+        running_total = 0
+        product_items = cart.get_product_items()
+        for product in product_items:
+            running_total += self._price_finder.get_price_point(product)
+        return running_total
+
+
+
+    def get_total(self):
+        """
+        Public Accessor for Price in Cart (Cents).
+
+        Args:
+            self (none): None.
+        Returns:
+            (Integer): The Total Price of the Cart in Cents.
+        """
+        return self.price

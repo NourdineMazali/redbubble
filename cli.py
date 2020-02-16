@@ -11,6 +11,7 @@ USAGE: python3 cli -c /PATH_TO_CART_JSON -p /PATH_TO_BASE_PRICE_JSON
 # ---------------------------------------------------------------------------- #
 import argparse #For Argument Parsing
 from helper import Helper # Helper class
+from redbubble import Cart, PriceFinder, Calculator
 
 
 def main():
@@ -41,3 +42,25 @@ def main():
 
     cart_json = Helper.load_schema(path_to_cart, 'cart.schema.json')
     price_json = Helper.load_schema(path_to_price, 'base-prices.schema.json')
+
+    # ------------------------------------------------------------------------ #
+    # Initialize Cart with Each Item and PriceFinder with Base Price Json
+    # ------------------------------------------------------------------------ #
+    cart = Cart(cart_json)
+
+    price_finder = PriceFinder(price_json)
+
+    # ------------------------------------------------------------------------ #
+    # Initialize Price Calculator
+    # ------------------------------------------------------------------------ #
+    calculator = Calculator(cart=cart, price_finder=price_finder)
+
+    # ------------------------------------------------------------------------ #
+    # Output Price of Shopping Cart Compared to Base Prices
+    # ------------------------------------------------------------------------ #
+    print(calculator.get_total())
+    return
+
+
+if __name__ == '__main__':
+    main()
