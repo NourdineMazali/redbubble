@@ -9,7 +9,7 @@ from exceptions import InputNotValid #For the invalid schema Exception
 from redbubble import Cart, PriceFinder, Calculator #Price Calculator Class - Find Price
 
 # ---------------------------------------------------------------------------- #
-# Initialization of Testing Variables - Easily Extendible and Dynamic!
+# Initialization of Testing Variables - Easily Extendable and Dynamic!
 # ---------------------------------------------------------------------------- #
 root = os.path.join(Helper.ROOT_DIR, 'test_files', 'carts')
 list_of_cart_jsons = [
@@ -17,8 +17,11 @@ list_of_cart_jsons = [
     os.path.join(root, 'cart-9363.json'), \
     os.path.join(root, 'cart-9500.json'), \
     os.path.join(root, 'cart-11356.json'), \
-    os.path.join(root, 'cart-0.json'), \
+    # cart is empty
+    os.path.join(root, 'cart-no-items.json'), \
+    # cart has one item no options
     os.path.join(root, 'cart-no-options-one-item.json'), \
+    # cart has multiple items of one product
     os.path.join(root, 'cart-repeat-item-quantity.json')]
 
 list_of_price_jsons = [os.path.join(Helper.ROOT_DIR, 'test_files','base_prices','base-prices.json')]
@@ -49,12 +52,12 @@ class TestFilesValidation(unittest.TestCase):
     def test_invalid_file(self):
         with self.assertRaises(InputNotValid):
             Helper.load_schema(
-                f=os.path.join(Helper.ROOT_DIR, 'test_files', 'test_carts' , 'cart-4560.json'),
+                f=os.path.join(Helper.ROOT_DIR, 'test_files', 'carts' , 'cart-4560.json'),
                 schema=os.path.join(Helper.ROOT_DIR, 'test_files', 'test_invalid_schemas', 'base-prices-invalid-format.json')
             )
         with self.assertRaises(InputNotValid):
             Helper.load_schema(
-                f=os.path.join(Helper.ROOT_DIR, 'test_files', 'test_carts' , 'cart-4560.json'),
+                f=os.path.join(Helper.ROOT_DIR, 'test_files', 'carts' , 'cart-4560.json'),
                 schema=os.path.join(Helper.ROOT_DIR, 'test_files', 'test_invalid_schemas', 'base-prices-invalid-json.json')
             )
 
