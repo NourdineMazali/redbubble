@@ -6,6 +6,7 @@ import os
 import unittest #For Automated Testing Purposes
 from helper import Helper
 from exceptions import InputNotValid #For the invalid schema Exception
+
 class TestFilesValidation(unittest.TestCase):
     """Tests for `cli` command line module."""
 
@@ -32,3 +33,6 @@ class TestFilesValidation(unittest.TestCase):
                 f=os.path.join(Helper.ROOT_DIR, 'test_files', 'test_carts' , 'cart-4560.json'),
                 schema=os.path.join(Helper.ROOT_DIR, 'test_files', 'test_invalid_schemas', 'base-prices-invalid-json.json')
             )
+
+if __name__ == '__main__':
+    unittest.main()
