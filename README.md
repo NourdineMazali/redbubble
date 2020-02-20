@@ -14,7 +14,7 @@ Redbubble Price Calculator - Coding Test
 * argparse library
 * jsonschema library 
 
-##Getting Started
+## Getting Started
 
 ### Option 1 : Use Local python
 
